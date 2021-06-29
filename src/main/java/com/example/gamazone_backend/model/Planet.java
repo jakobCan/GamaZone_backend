@@ -1,11 +1,14 @@
 package com.example.gamazone_backend.model;
 
+import java.util.ArrayList;
+
 public class Planet {
     private int planetId;
     private String name;
     private int price;
     private String description;
     private String tagline;
+    private ArrayList<Category> categories;
 
     public Planet(String name, int price) {
         this.name = name;

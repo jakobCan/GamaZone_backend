@@ -1,15 +1,16 @@
 package com.example.gamazone_backend.controller;
 
+import com.example.gamazone_backend.model.Category;
 import com.example.gamazone_backend.model.Planet;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("/planet")
+@CrossOrigin
+@RequestMapping("/planets")
 public class PlanetController {
 
-    @CrossOrigin    // TODO: 29.06.2021 do we need this?
     @GetMapping()
     public ArrayList<Planet> getPlanets(){  // TODO: 29.06.2021 where does the list come from?
         return null;
@@ -33,5 +34,10 @@ public class PlanetController {
     @DeleteMapping("/{planetId}")
     public void deletePlanet(@PathVariable int planetId){
         //delete planet
+    }
+
+    @GetMapping("/{planetId}/categories")
+    public ArrayList<Category> getCategoriesOfPlanet(@PathVariable int planetId){
+        return null;
     }
 }

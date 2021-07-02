@@ -24,7 +24,7 @@ public class CategoryController {
      * @param categoryId id of the specific category
      * @return requested planets as an ArrayList
      */
-    @GetMapping("/{categoryId}")
+    @GetMapping("/{categoryId}/planets")
     public ArrayList<Planet> getAllPlanetsOfCategory(@PathVariable int categoryId){
         return null;
     }

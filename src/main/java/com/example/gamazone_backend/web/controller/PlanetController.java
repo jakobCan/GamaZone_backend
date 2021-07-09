@@ -1,67 +1,47 @@
-package com.example.gamazone_backend.controller;
+package com.example.gamazone_backend.web.controller;
 
-import com.example.gamazone_backend.model.Category;
-import com.example.gamazone_backend.model.Planet;
+import com.example.gamazone_backend.data.model.Category;
+import com.example.gamazone_backend.data.model.Planet;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
-@RestController
+
 @CrossOrigin
 @RequestMapping("/planets")
-public class PlanetController {
+public class PlanetController implements com.example.gamazone_backend.web.api.PlanetApi {
 
-    /**
-     * returns all planets
-     * @return planets as an ArrayList
-     */
+    @Override
     @GetMapping()
     public ArrayList<Planet> getPlanets(){  // TODO: 29.06.2021 where does the list come from?
         return null;
     }
 
-    /**
-     * returns a specific planet
-     * @param planetId id of requested planet
-     * @return the requested planet
-     */
+    @Override
     @GetMapping("/{planetId}")
     public Planet getPlanet(@PathVariable int planetId){
         return null;
     }
 
-    /**
-     * creates a new planet
-     * @param newPlanet the new planet to be created
-     */
+    @Override
     @PostMapping()
     public void createPlanet(@RequestBody Planet newPlanet){
         // create new Planet
     }
 
-    /**
-     * updates a specific planet
-     * @param planetId id of the requested planet
-     */
+    @Override
     @PutMapping("/{planetId}")
     public void updatePlanet(@PathVariable int planetId){
         // update planet
     }
 
-    /**
-     * deletes a specific planet
-     * @param planetId id of the planet to be deleted
-     */
+    @Override
     @DeleteMapping("/{planetId}")
     public void deletePlanet(@PathVariable int planetId){
         //delete planet
     }
 
-    /**
-     * returns all categories of a specific planet
-     * @param planetId id of requested planet
-     * @return all the planets categories as an ArrayList
-     */
+    @Override
     @GetMapping("/{planetId}/categories")
     public ArrayList<Category> getCategoriesOfPlanet(@PathVariable int planetId){
         return null;

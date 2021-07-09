@@ -1,55 +1,39 @@
-package com.example.gamazone_backend.controller;
+package com.example.gamazone_backend.web.controller;
 
-import com.example.gamazone_backend.model.User;
+import com.example.gamazone_backend.data.model.User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class UserController implements com.example.gamazone_backend.web.api.UserApi {
 
-    /**
-     * returns all users
-     * @return users as an ArrayList
-     */
+    @Override
     @GetMapping()
     public ArrayList<User> getUsers(){
         return null;
     }
 
-    /**
-     * returns a specific user
-     * @param userId id of the requested user
-     * @return the requested user
-     */
+    @Override
     @GetMapping("/{userId}")
     public User getUser(@PathVariable int userId){
         return null;
     }
 
-    /**
-     * creates a new user
-     * @param newUser the user to be created
-     */
+    @Override
     @PostMapping
     public void createUser(@RequestBody User newUser){
         // create new user
     }
 
-    /**
-     * updates an existing user
-     * @param userId id of the requested user
-     */
+    @Override
     @PutMapping("/{userId}")
     public void updateUser(@PathVariable int userId){
         // update user
     }
 
-    /**
-     * deletes a specific user
-     * @param userId id of the user to be deleted
-     */
+    @Override
     @DeleteMapping("/{userId}")
     public void deleteUser(@PathVariable int userId){
         // delete user

@@ -1,56 +1,40 @@
-package com.example.gamazone_backend.controller;
+package com.example.gamazone_backend.web.controller;
 
-import com.example.gamazone_backend.model.Category;
-import com.example.gamazone_backend.model.Planet;
+import com.example.gamazone_backend.data.model.Category;
+import com.example.gamazone_backend.data.model.Planet;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/categories")
-public class CategoryController {
+public class CategoryController implements com.example.gamazone_backend.web.api.CategoryApi {
 
-    /**
-     * returns all categories
-     * @return categories as an ArrayList
-     */
+    @Override
     @GetMapping()
     public ArrayList<Category> getCategories(){
         return null;
     }
 
-    /**
-     * Returns all planets of a specific category
-     * @param categoryId id of the specific category
-     * @return requested planets as an ArrayList
-     */
+    @Override
     @GetMapping("/{categoryId}")
     public ArrayList<Planet> getAllPlanetsOfCategory(@PathVariable int categoryId){
         return null;
     }
 
-    /**
-     * creates a new category
-     * @param newCategory the category to be created
-     */
+    @Override
     @PostMapping()
     public void createCategory(@RequestBody Category newCategory){
         // create category
     }
 
-    /**
-     * updates a category
-     * @param categoryId id of the category to be updated
-     */
+    @Override
     @PutMapping("/{categoryId}")
     public void updateCategory(@PathVariable int categoryId){
         // update category
     }
 
-    /**
-     * deletes a category
-     * @param categoryId id of the category to be deleted
-     */
+    @Override
     @DeleteMapping("/{categoryId}")
     public void deleteCategory(@PathVariable int categoryId){
         // delete category

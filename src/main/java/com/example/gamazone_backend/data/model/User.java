@@ -1,4 +1,4 @@
-package com.example.gamazone_backend.model;
+package com.example.gamazone_backend.data.model;
 
 public class User {
     private int userId;

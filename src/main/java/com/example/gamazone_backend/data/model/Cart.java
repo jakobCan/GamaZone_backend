@@ -11,10 +11,11 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private ArrayList<Planet> planet;
+    @OneToMany
+    private ArrayList<SpaceObject> spaceObjects;
+    // TODO: 15.10.2021 wie löst man das Problem? OneToMany oder embeddable?
     private int totalSum;
-    private int numberOfItems;
-    private int cartId;
+    private int numberOfItems;  // TODO: 15.10.2021 brauchen wir eigentlich nicht, weil spaceObjects.length?
 
     public Long getId() {
         return id;
@@ -27,19 +28,18 @@ public class Cart {
     public Cart() {
     }
 
-    public Cart(ArrayList<Planet> planet, int totalSum, int numberOfItems, int cartId) {
-        this.planet = planet;
+    public Cart(ArrayList<SpaceObject> spaceObjects, int totalSum, int numberOfItems) {
+        this.spaceObjects = spaceObjects;
         this.totalSum = totalSum;
         this.numberOfItems = numberOfItems;
-        this.cartId = cartId;
     }
 
-    public ArrayList<Planet> getPlanet() {
-        return planet;
+    public ArrayList<SpaceObject> getPlanet() {
+        return spaceObjects;
     }
 
-    public void setPlanet(ArrayList<Planet> planet) {
-        this.planet = planet;
+    public void setPlanet(ArrayList<SpaceObject> planet) {
+        this.spaceObjects = planet;
     }
 
     public int getTotalSum() {
@@ -57,12 +57,5 @@ public class Cart {
     public void setNumberOfItems(int numberOfItems) {
         this.numberOfItems = numberOfItems;
     }
-
-    public int getCartId() {
-        return cartId;
-    }
-
-    public void setCartId(int cartId) {
-        this.cartId = cartId;
-    }
 }
+

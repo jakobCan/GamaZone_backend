@@ -1,8 +1,6 @@
 package com.example.gamazone_backend.data.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -10,6 +8,7 @@ public class SpaceObject {
 
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotBlank
@@ -17,7 +16,8 @@ public class SpaceObject {
     private int price;
     private String description;
     private String tagline;
-    private String type;
+    private String type;    //Kategorie (moon, planet, ...)
+    private String picture; // TODO: 15.10.2021 String ok?
 
     public SpaceObject() {
 

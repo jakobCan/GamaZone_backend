@@ -12,12 +12,14 @@ public class SpaceObjectController {
 
         @GetMapping()
         public ArrayList<SpaceObject> getSpaceObjects(){
-            return null;
+                return null;
+//              return spaceObjectRepository.findAll();
         }
 
         @GetMapping("/{id}")
         public SpaceObject getSpaceObject(@PathVariable Long id){
-            return null;
+                return null;
+//                return spaceObjectRepository.find(id);
         }
         
         @PostMapping()

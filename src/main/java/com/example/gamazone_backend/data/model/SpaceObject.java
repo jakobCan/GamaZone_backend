@@ -1,34 +1,42 @@
 package com.example.gamazone_backend.data.model;
 
-import java.util.ArrayList;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
-public class Moon {
-    private int moonId;
+@Entity
+public class SpaceObject {
+
+    @Id
+    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @NotBlank
     private String name;
     private int price;
     private String description;
     private String tagline;
-    private ArrayList<Category> categories;
-    private Planet planet;
+    private String type;    //Kategorie (moon, planet, ...)
+    private String picture; // TODO: 15.10.2021 String ok?
 
-    public Moon(String name, int price) {
-        this.name = name;
-        this.price = price;
+    public SpaceObject() {
+
     }
 
-    public Moon(String name, int price, String description, String tagline) {
+    public SpaceObject(String name, int price, String description, String tagline, String type) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.tagline = tagline;
+        this.type = type;
     }
 
-    public int getMoonId() {
-        return moonId;
+    public Long getId() {
+        return id;
     }
 
-    public void setMoonId(int moonId) {
-        this.moonId = moonId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -63,11 +71,11 @@ public class Moon {
         this.tagline = tagline;
     }
 
-    public ArrayList<Category> getCategories() {
-        return categories;
+    public String getType() {
+        return type;
     }
 
-    public void setCategories(ArrayList<Category> categories) {
-        this.categories = categories;
+    public void setType(String type) {
+        this.type = type;
     }
 }

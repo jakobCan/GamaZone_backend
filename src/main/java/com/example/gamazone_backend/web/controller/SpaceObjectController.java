@@ -12,7 +12,18 @@ public class SpaceObjectController {
 
         @GetMapping()
         public ArrayList<SpaceObject> getSpaceObjects(){
-                return null;
+                ArrayList<SpaceObject> spaceObjects = new ArrayList<>();
+                spaceObjects.add(new SpaceObject("Terra", 100, "Lorem Ipsum", "afafoiajf", "Planet"));
+                spaceObjects.add(new SpaceObject("Terra", 100, "Lorem Ipsum", "afafoiajf", "Planet"));
+                spaceObjects.add(new SpaceObject("Terra", 100, "Lorem Ipsum", "afafoiajf", "Planet"));
+                spaceObjects.add(new SpaceObject("Terra", 100, "Lorem Ipsum", "afafoiajf", "Planet"));
+                spaceObjects.add(new SpaceObject("Terra", 100, "Lorem Ipsum", "afafoiajf", "Planet"));
+                spaceObjects.add(new SpaceObject("Terra", 100, "Lorem Ipsum", "afafoiajf", "Planet"));
+                spaceObjects.add(new SpaceObject("Terra", 100, "Lorem Ipsum", "afafoiajf", "Planet"));
+                spaceObjects.add(new SpaceObject("Terra", 100, "Lorem Ipsum", "afafoiajf", "Planet"));
+                spaceObjects.add(new SpaceObject("Terra", 100, "Lorem Ipsum", "afafoiajf", "Planet"));
+                spaceObjects.add(new SpaceObject("Terra", 100, "Lorem Ipsum", "afafoiajf", "Planet"));
+                return spaceObjects;
 //              return spaceObjectRepository.findAll();
         }
 

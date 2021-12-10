@@ -1,6 +1,7 @@
 package com.example.gamazone_backend.web.controller;
 
 import com.example.gamazone_backend.data.model.User;
+import com.example.gamazone_backend.repository.UserRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -8,6 +9,12 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+    private final UserRepository userRepository;
+
+    public UserController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @GetMapping()
     public ArrayList<User> getUsers(){

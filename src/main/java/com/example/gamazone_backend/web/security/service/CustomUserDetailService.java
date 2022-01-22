@@ -22,7 +22,7 @@ public class CustomUserDetailService implements UserDetailsService {
         User user = this.userRepository.findByUsername(s);
 
         if (null == user) {
-            throw new UsernameNotFoundException(s);
+            throw new UsernameNotFoundException("could not find user");
         }
         return new CustomUserDetails(user);
     }

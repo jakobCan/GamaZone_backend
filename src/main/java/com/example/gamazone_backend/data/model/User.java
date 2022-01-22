@@ -28,7 +28,6 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
-    private int type; // admin = 0 / user = 1 / guest = 2
     // TODO: 29.06.2021 where would we put a shipping address? (own class?)
 
     public User() {

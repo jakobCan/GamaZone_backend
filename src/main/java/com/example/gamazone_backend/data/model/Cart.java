@@ -1,9 +1,10 @@
 package com.example.gamazone_backend.data.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table
 public class Cart {
 
     @Id
@@ -12,7 +13,7 @@ public class Cart {
     private Long id;
 
     @OneToMany
-    private ArrayList<SpaceObject> spaceObjects;
+    private List<SpaceObject> spaceObjects;
     // TODO: 15.10.2021 wie löst man das Problem? OneToMany oder embeddable?
     private int totalSum;
     private int numberOfItems;  // TODO: 15.10.2021 brauchen wir eigentlich nicht, weil spaceObjects.length?
@@ -28,17 +29,17 @@ public class Cart {
     public Cart() {
     }
 
-    public Cart(ArrayList<SpaceObject> spaceObjects, int totalSum, int numberOfItems) {
+    public Cart(List<SpaceObject> spaceObjects, int totalSum, int numberOfItems) {
         this.spaceObjects = spaceObjects;
         this.totalSum = totalSum;
         this.numberOfItems = numberOfItems;
     }
 
-    public ArrayList<SpaceObject> getPlanet() {
+    public List<SpaceObject> getPlanet() {
         return spaceObjects;
     }
 
-    public void setPlanet(ArrayList<SpaceObject> planet) {
+    public void setPlanet(List<SpaceObject> planet) {
         this.spaceObjects = planet;
     }
 

@@ -1,18 +1,19 @@
 package com.example.gamazone_backend.data.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
+@Table(name = "spaceOrder")
 public class Order {
 
     @Id
     @Column(name = "id", nullable = false)
     private Long id;
-    @OneToOne
-    private User user;  // TODO: 15.10.2021 muss User dann auch Order verwalten? Damit er zB. seine alten Bestellungen sehen kann
+
+    @Column(name = "user_id")
+    private @NotBlank Integer userId;    // TODO: 15.10.2021 muss User dann auch Order verwalten? Damit er zB. seine alten Bestellungen sehen kann
+
     private String orderStatus;
 
 

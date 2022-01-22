@@ -1,12 +1,17 @@
 package com.example.gamazone_backend.web.security.dto;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
-public class LoginRequest {
+public class SignupRequest {
+
     @NotBlank
-    public String username;
+    @Size(min = 3, max = 15)
+    private String username;
+
     @NotBlank
-    public String password;
+    @Size(min = 6, max = 20)
+    private String password;
 
     public String getUsername() {
         return username;

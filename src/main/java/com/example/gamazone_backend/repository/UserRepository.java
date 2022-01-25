@@ -1,18 +1,16 @@
 package com.example.gamazone_backend.repository;
 
-import com.example.gamazone_backend.data.model.User;
-import org.springframework.data.jpa.repository.Query;
+import com.example.gamazone_backend.model.User;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
 public interface UserRepository extends CrudRepository<User, Long> {
 
-    @Query("SELECT u FROM User u WHERE u.username = :username")
-    public User getUserByUsername(@Param("username") String username);
+    //@Query("SELECT u FROM User u WHERE u.username = :username")
+    //public User getUserByUsername(@Param("username") String username);
 
-    User findByUsername(String username);   // TODO: 10.09.2021 Whaaaaat?
+    User findByUsername(String username);   // Tells JPA we need a name/String
 
     List<User> findAll();
 
@@ -21,6 +19,3 @@ public interface UserRepository extends CrudRepository<User, Long> {
     User findUserByEmail(String email);
 
 }
-
-// TODO: 17.09.2021 CONTINUE HERE:
-// TODO: 17.09.2021 Create repository for SpaceObject

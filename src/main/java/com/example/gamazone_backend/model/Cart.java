@@ -1,4 +1,4 @@
-package com.example.gamazone_backend.data.model;
+package com.example.gamazone_backend.model;
 
 import javax.persistence.*;
 import java.util.List;

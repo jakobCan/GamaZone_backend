@@ -1,6 +1,6 @@
 package com.example.gamazone_backend.web.controller;
 
-import com.example.gamazone_backend.data.model.Cart;
+import com.example.gamazone_backend.model.Cart;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;

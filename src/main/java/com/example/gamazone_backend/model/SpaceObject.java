@@ -1,4 +1,4 @@
-package com.example.gamazone_backend.data.model;
+package com.example.gamazone_backend.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -8,7 +8,7 @@ public class SpaceObject {
 
     @Id
     @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @NotBlank
@@ -16,19 +16,19 @@ public class SpaceObject {
     private int price;
     private String description;
     private String tagline;
-    private String type;    //Kategorie (moon, planet, ...)
+    private String category;    //Kategorie (moon, planet, ...)
     private String picture; // TODO: 15.10.2021 String ok?
 
     public SpaceObject() {
 
     }
 
-    public SpaceObject(String name, int price, String description, String tagline, String type) {
+    public SpaceObject(String name, int price, String description, String tagline, String category) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.tagline = tagline;
-        this.type = type;
+        this.category = category;
     }
 
     public Long getId() {
@@ -71,11 +71,11 @@ public class SpaceObject {
         this.tagline = tagline;
     }
 
-    public String getType() {
-        return type;
+    public String getCategory() {
+        return category;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setCategory(String type) {
+        this.category = type;
     }
 }

@@ -1,6 +1,6 @@
 package com.example.gamazone_backend.web.security;
 
-import com.example.gamazone_backend.data.model.User;
+import com.example.gamazone_backend.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

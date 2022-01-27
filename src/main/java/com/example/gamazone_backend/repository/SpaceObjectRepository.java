@@ -5,6 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface SpaceObjectRepository extends CrudRepository<SpaceObject, Long> {
@@ -13,7 +14,7 @@ public interface SpaceObjectRepository extends CrudRepository<SpaceObject, Long>
 
     SpaceObject findSpaceObjectById(Long id);
 
-    SpaceObject findSpaceObjectByCategory(String category);
+    List<SpaceObject> findSpaceObjectByCategory(String category);
 
     List<SpaceObject> findAll();
 }

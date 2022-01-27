@@ -2,6 +2,7 @@ package com.example.gamazone_backend.web.controller;
 
 import com.example.gamazone_backend.model.User;
 import com.example.gamazone_backend.repository.UserRepository;
+import com.example.gamazone_backend.web.security.service.CustomUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -25,7 +26,10 @@ public class UserController {
     @Autowired
     private BCryptPasswordEncoder BCryptPasswordEncoder;
 
-    @GetMapping()
+    @Autowired
+    private CustomUserDetailService customUserDetailService;
+
+    @GetMapping("")
     public List<User> getUsers(){
         return userRepository.findAll();
     }
@@ -35,10 +39,15 @@ public class UserController {
         return userRepository.findById(userId);
     }
 
-    @PutMapping("/{userId}")
+    @GetMapping("/username/{username}")
+    public User getUserByUsername(@PathVariable String username){
+        return userRepository.findByUsername(username);
+    }
+
+
+    @PutMapping("/admin/{userId}")
     public User updateUser(@PathVariable Long userId, @Valid @RequestBody User userDetails) {
         User user = userRepository.findById(userId).orElse(null);
-
         assert user != null;
         user.setUsername(userDetails.getUsername());
         user.setPassword(userDetails.getPassword());
@@ -52,8 +61,9 @@ public class UserController {
     }
 
     @DeleteMapping("/{userId}")
-    public void deleteUser(@PathVariable int userId){
-        // delete user
+    public String deleteUser(@PathVariable User userId){
+       userRepository.delete(userId);
+        return userId + "was deleted.";
     }
     @GetMapping("/roles")
     public Collection<? extends GrantedAuthority> getCurrentAuthorities() {

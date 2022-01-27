@@ -58,12 +58,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http    // "/admin" accessible by user with ROLE_ADMIN
                 .authorizeRequests()
-                .antMatchers("/admin")
+                .antMatchers("/admin/**", "/products/admin/**", "/products/create")
                 .access("hasRole('ROLE_ADMIN')");
 
         http    // "/user" accessible by user with ROLE_ADMIN and ROLE_USER
                 .authorizeRequests()
-                .antMatchers("/user")
+                .antMatchers("/user/**")
                 .access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
 
         http    // lock every route
@@ -87,7 +87,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("") //don't know what goes in here
+                .logoutSuccessUrl("")
                 .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK));
 
         http

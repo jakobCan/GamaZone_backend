@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -29,11 +30,10 @@ public class SpaceObjectController {
         
         @PostMapping("/create")
         public @ResponseBody SpaceObject createSpaceObject(@RequestBody @Valid SpaceObject newSpaceObject){
-                spaceObjectRepository.save(newSpaceObject);
-                return newSpaceObject;
+                return spaceObjectRepository.save(newSpaceObject);
         }
         
-        @PutMapping("/{id}")
+        @PutMapping("/admin/{id}")
         public SpaceObject updateSpaceObject(@PathVariable Long id, @Valid @RequestBody SpaceObject spaceObjectDetails){
             SpaceObject spaceObject = spaceObjectRepository.findSpaceObjectById(id); //.orElse(null); why you not work?
             assert(spaceObject != null);
@@ -47,16 +47,16 @@ public class SpaceObjectController {
 
         }
         
-        @DeleteMapping("/{id}")
-        public String deleteSpaceObject(@PathVariable Long id){
+        @DeleteMapping("/admin/{id}")
+        public long deleteSpaceObject(@PathVariable Long id){
                 spaceObjectRepository.deleteById(id);
-                return id + "was deleted.";
-        }
-        
-        @GetMapping("/{id}/categories")
-        public ArrayList<SpaceObject> getCategoriesOfSpaceObject(@PathVariable Long id){
-                return null;
+                return id;
         }
 
-        // todo: public Optional<SpaceObject> findSpaceObjectByCategory(@PathVariab)
-}
+        @GetMapping("/category/{category}")
+        public List<SpaceObject> findSpaceObjectByCategory(@PathVariable String category){
+                return spaceObjectRepository.findSpaceObjectByCategory(category);
+        }
+
+    }
+

@@ -23,12 +23,13 @@ public class SpaceObject {
 
     }
 
-    public SpaceObject(String name, int price, String description, String tagline, String category) {
+    public SpaceObject(String name, int price, String description, String tagline, String category, String picture) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.tagline = tagline;
         this.category = category;
+        this.picture = picture;
     }
 
     public Long getId() {
@@ -77,5 +78,13 @@ public class SpaceObject {
 
     public void setCategory(String type) {
         this.category = type;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 }

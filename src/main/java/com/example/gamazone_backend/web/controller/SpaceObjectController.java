@@ -3,9 +3,11 @@ package com.example.gamazone_backend.web.controller;
 import com.example.gamazone_backend.model.SpaceObject;
 import com.example.gamazone_backend.repository.SpaceObjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,8 +34,8 @@ public class SpaceObjectController {
         public @ResponseBody SpaceObject createSpaceObject(@RequestBody @Valid SpaceObject newSpaceObject){
                 return spaceObjectRepository.save(newSpaceObject);
         }
-        
-        @PutMapping("/admin/{id}")
+        @PreAuthorize("hasRole('ROLE_ADMIN')")
+        @PutMapping("/{id}")
         public SpaceObject updateSpaceObject(@PathVariable Long id, @Valid @RequestBody SpaceObject spaceObjectDetails){
             SpaceObject spaceObject = spaceObjectRepository.findSpaceObjectById(id); //.orElse(null); why you not work?
             assert(spaceObject != null);
@@ -46,12 +48,13 @@ public class SpaceObjectController {
             return spaceObject;
 
         }
-        
-        @DeleteMapping("/admin/{id}")
+        @PreAuthorize("hasRole('ROLE_ADMIN')")
+        @DeleteMapping("/{id}")
         public long deleteSpaceObject(@PathVariable Long id){
                 spaceObjectRepository.deleteById(id);
                 return id;
         }
+
 
         @GetMapping("/category/{category}")
         public List<SpaceObject> findSpaceObjectByCategory(@PathVariable String category){

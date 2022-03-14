@@ -4,6 +4,7 @@ import com.example.gamazone_backend.model.User;
 import com.example.gamazone_backend.repository.UserRepository;
 import com.example.gamazone_backend.web.security.service.CustomUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -49,8 +50,12 @@ public class UserController {
     public String currentUserName(Authentication authentication) {
         return authentication.getName();
     }
-
-    @PutMapping("/admin/{userId}")
+    @GetMapping("/currentUser")
+    public @ResponseBody String currentUserRole(User user) {
+        return user.getRole();
+    }
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PutMapping("/{userId}")
     public User updateUser(@PathVariable Long userId, @Valid @RequestBody User userDetails) {
         User user = userRepository.findById(userId).orElse(null);
         assert user != null;
@@ -65,6 +70,7 @@ public class UserController {
         return user;
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/{userId}")
     public String deleteUser(@PathVariable User userId){
        userRepository.delete(userId);

@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "Http://localhost:8080")
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
@@ -44,6 +44,11 @@ public class UserController {
         return userRepository.findByUsername(username);
     }
 
+    @RequestMapping(value = "/username", method = RequestMethod.GET)
+    @ResponseBody
+    public String currentUserName(Authentication authentication) {
+        return authentication.getName();
+    }
 
     @PutMapping("/admin/{userId}")
     public User updateUser(@PathVariable Long userId, @Valid @RequestBody User userDetails) {

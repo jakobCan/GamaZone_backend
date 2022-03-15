@@ -50,10 +50,12 @@ public class UserController {
     public String currentUserName(Authentication authentication) {
         return authentication.getName();
     }
+
     @GetMapping("/currentUser")
     public @ResponseBody String currentUserRole(User user) {
         return user.getRole();
     }
+
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/{userId}")
     public User updateUser(@PathVariable Long userId, @Valid @RequestBody User userDetails) {

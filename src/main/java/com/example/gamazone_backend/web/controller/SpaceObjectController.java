@@ -29,11 +29,13 @@ public class SpaceObjectController {
         public SpaceObject getSpaceObject(@PathVariable Long id){
                 return spaceObjectRepository.findSpaceObjectById(id);
         }
-        
+
+        @PreAuthorize("hasRole('ROLE_ADMIN')")
         @PostMapping("/create")
         public @ResponseBody SpaceObject createSpaceObject(@RequestBody @Valid SpaceObject newSpaceObject){
                 return spaceObjectRepository.save(newSpaceObject);
         }
+
         @PreAuthorize("hasRole('ROLE_ADMIN')")
         @PutMapping("/{id}")
         public SpaceObject updateSpaceObject(@PathVariable Long id, @Valid @RequestBody SpaceObject spaceObjectDetails){
@@ -54,7 +56,6 @@ public class SpaceObjectController {
                 spaceObjectRepository.deleteById(id);
                 return id;
         }
-
 
         @GetMapping("/category/{category}")
         public List<SpaceObject> findSpaceObjectByCategory(@PathVariable String category){

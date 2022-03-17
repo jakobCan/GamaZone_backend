@@ -2,7 +2,71 @@ package com.example.gamazone_backend.model;
 
 import javax.persistence.*;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+
+@Entity
+@Table(name="cartitems")
+public class CartItem {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id", nullable = false)
+    private int id;
+
+    @ManyToOne
+    private SpaceObject spaceObject;
+
+    @Column(name="quantity", nullable = false)
+    private int quantity;
+
+
+    public CartItem() {}
+
+    public CartItem(SpaceObject spaceObject, int quantity) {
+        this.spaceObject = spaceObject;
+        this.quantity = quantity;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public SpaceObject getSpaceObject() {
+        return spaceObject;
+    }
+
+    public void setSpaceObject(SpaceObject spaceObject) {
+        this.spaceObject = spaceObject;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "CartItem [id=" + id + ", spaceObject=" + spaceObject + ", quantity=" + quantity + "]";
+    }
+
+}
+
+
+/*
 @Entity
 @Table
 public class Cart {
@@ -59,4 +123,4 @@ public class Cart {
         this.numberOfItems = numberOfItems;
     }
 }
-
+*/

@@ -15,16 +15,19 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Objects;
 
 @Service
 public class FileStorageService {
 
     private final Path fileStorageLocation;
+    private final String uploadDirectory;
 
     @Autowired
     public FileStorageService(FileStorageProperties fileStorageProperties) {
         this.fileStorageLocation = Paths.get(fileStorageProperties.getUploadDir())
                 .toAbsolutePath().normalize();
+        this.uploadDirectory = fileStorageProperties.getUploadDir();
 
         try {
             Files.createDirectories(this.fileStorageLocation);
@@ -35,7 +38,10 @@ public class FileStorageService {
 
     public String storeFile(MultipartFile file) {
         // Normalize file name
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
+        String filePath = uploadDirectory
+                .concat("/")
+                .concat(fileName);
 
         try {
             // Check if the file's name contains invalid characters
@@ -47,7 +53,7 @@ public class FileStorageService {
             Path targetLocation = this.fileStorageLocation.resolve(fileName);
             Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 
-            return fileName;
+            return filePath;
         } catch (IOException ex) {
             throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
         }

@@ -44,9 +44,9 @@ public class SpaceObjectController {
             spaceObject.setName(spaceObjectDetails.getName());
             spaceObject.setDescription(spaceObjectDetails.getDescription());
             spaceObject.setPrice(spaceObjectDetails.getPrice());
-            spaceObject.setTagline(spaceObject.getTagline());
-            spaceObject.setCategory(spaceObject.getCategory());
-            spaceObjectRepository.save(spaceObject);
+            spaceObject.setTagline(spaceObjectDetails.getTagline());
+            spaceObject.setCategory(spaceObjectDetails.getCategory());
+            spaceObjectRepository.save(spaceObjectDetails);
             return spaceObject;
 
         }

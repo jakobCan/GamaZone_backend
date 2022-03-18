@@ -19,7 +19,7 @@ public class SpaceObject {
     private String description;
     private String tagline;
     private String category;    //Kategorie (moon, planet, ...)
-    private String picture; // TODO: 15.10.2021 String ok?
+    private String picture;
 
     @OneToMany
     private Set<CartItem> cartItems = new HashSet<CartItem>();

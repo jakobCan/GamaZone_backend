@@ -28,7 +28,9 @@ public class User {
     private String lastName;
     private String email;
     private boolean active = true;
-    // TODO: 29.06.2021 where would we put a shipping address? PayPal ;) (own class?)
+
+    @OneToOne (cascade = CascadeType.ALL)
+    Cart cart = new Cart();
 
     public User() {
 

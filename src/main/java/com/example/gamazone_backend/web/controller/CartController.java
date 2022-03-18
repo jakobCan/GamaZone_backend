@@ -1,47 +1,59 @@
 package com.example.gamazone_backend.web.controller;
 
 import com.example.gamazone_backend.model.CartItem;
-import com.example.gamazone_backend.service.ICartService;
+import com.example.gamazone_backend.repository.CartItemRepository;
+import com.example.gamazone_backend.repository.SpaceObjectRepository;
+import com.example.gamazone_backend.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
-
+@CrossOrigin(origins = "Http://localhost:8080")
 @RestController
-@RequestMapping(value = CartController.PATH, produces = CartController.APPLICATION_JSON_VALUE)
+@RequestMapping("/cart")
 public class CartController {
 
-    //	protected static final String PATH = "/0.1/cart";
-    protected static final String PATH = "/cart";
-    protected static final String APPLICATION_JSON_VALUE = "application/json; charset=utf-8";
+    private final CartService cartService;
 
     @Autowired
-    ICartService cart;
+    private CartItemRepository cartItemRepository;
 
-    @RequestMapping(value="/items", method=RequestMethod.GET)
-    public List<CartItem> getItems(@RequestParam(value="user", defaultValue="anonymous") String username)
-    {
-        return cart.getItems(username);
+
+    public CartController(CartService cartService) {
+        this.cartService = cartService;
     }
 
-    @RequestMapping(value="/add", method=RequestMethod.POST)
-    public CartItem addSpaceObject(@RequestParam(value="spaceObject") String spaceObjectName, @RequestParam(value="qty", defaultValue="1") int quantity,
-                                   @RequestParam(value="user", defaultValue="anonymous") String username)
+    @RequestMapping(value="/items", method=RequestMethod.GET)
+    public List<CartItem> getItems()
     {
-        return cart.addSpaceObject(spaceObjectName, quantity, username);
+        return cartService.getItems(cartService.currentUserName());
+    }
+
+    @RequestMapping(value="/add/{product}/{quantity}", method=RequestMethod.POST)
+    public CartItem addSpaceObject(@PathVariable String product, @PathVariable int quantity)
+    {
+        return cartService.addSpaceObject(product, quantity, cartService.currentUserName());
     }
 
     @RequestMapping(value="/empty", method=RequestMethod.GET)
-    public void emptyCart(@RequestParam(value="user", defaultValue="anonymous") String username)
+    public void emptyCart()
     {
-        cart.emptyCart(username);
+        cartService.emptyCart(cartService.currentUserName());
+    }
+
+    @DeleteMapping(value="/delete/{itemId}")
+    public void deleteCartItem(@PathVariable Long itemId){
+        //CartItem cartItem = cartItemRepository.findBySpaceObject(itemId);
+        cartItemRepository.deleteById(itemId);
     }
 
     @RequestMapping(value="/cost", method=RequestMethod.GET)
-    public double getTotalCost(@RequestParam(value="user", defaultValue="anonymous") String username)
+    public double getTotalCost()
     {
-        return cart.getTotalCost(username);
+        return cartService.getTotalCost(cartService.currentUserName());
     }
+
+
 }

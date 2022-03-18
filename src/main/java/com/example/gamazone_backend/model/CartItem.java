@@ -18,7 +18,7 @@ public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id", nullable = false)
-    private int id;
+    private long id;
 
     @ManyToOne
     private SpaceObject spaceObject;
@@ -26,6 +26,8 @@ public class CartItem {
     @Column(name="quantity", nullable = false)
     private int quantity;
 
+    @ManyToOne
+    private Cart cart;
 
     public CartItem() {}
 
@@ -34,11 +36,11 @@ public class CartItem {
         this.quantity = quantity;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

@@ -3,18 +3,18 @@ package com.example.gamazone_backend.service;
 import com.example.gamazone_backend.model.CartItem;
 import com.example.gamazone_backend.model.SpaceObject;
 import com.example.gamazone_backend.repository.CartItemRepository;
-import com.example.gamazone_backend.repository.IPriceService;
 import com.example.gamazone_backend.repository.SpaceObjectRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CartService implements ICartService {
+public class CartService{
 
     private static final Logger log = LoggerFactory.getLogger(CartService.class);
 
@@ -24,11 +24,6 @@ public class CartService implements ICartService {
     @Autowired
     private CartItemRepository cartItemRepository;
 
-    @Autowired
-    private IPriceService priceHelper;
-
-
-    @Override
     public List<CartItem> getItems(String username) {
         List<CartItem> result = new ArrayList<CartItem>();
         for (CartItem item : cartItemRepository.findAll()) {
@@ -64,20 +59,18 @@ public class CartService implements ICartService {
         cartItemRepository.deleteAll();
     }
 
-    @Override
+
     public double getTotalCost(String username) {
         double totalPrice = 0;
         for (CartItem item : cartItemRepository.findAll()) {
             // Add up price times count
             totalPrice += item.getSpaceObject().getPrice() * item.getQuantity();
-            // Substract discount
-            double discount = priceHelper.getDiscount(item.getSpaceObject(), item.getQuantity());
-
-            if (discount > 0) {
-                totalPrice -= discount;
-            }
         }
         return totalPrice;
+    }
+
+    public String currentUserName (){
+        return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
 }

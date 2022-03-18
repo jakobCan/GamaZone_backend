@@ -2,7 +2,6 @@ package com.example.gamazone_backend.web.controller;
 
 import com.example.gamazone_backend.model.CartItem;
 import com.example.gamazone_backend.repository.CartItemRepository;
-import com.example.gamazone_backend.repository.SpaceObjectRepository;
 import com.example.gamazone_backend.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,6 +11,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "Http://localhost:8080")
 @RestController
+@PreAuthorize("hasRole('ROLE_USER')")
 @RequestMapping("/cart")
 public class CartController {
 
@@ -43,9 +43,9 @@ public class CartController {
         cartService.emptyCart(cartService.currentUserName());
     }
 
+
     @DeleteMapping(value="/delete/{itemId}")
     public void deleteCartItem(@PathVariable Long itemId){
-        //CartItem cartItem = cartItemRepository.findBySpaceObject(itemId);
         cartItemRepository.deleteById(itemId);
     }
 
@@ -54,6 +54,5 @@ public class CartController {
     {
         return cartService.getTotalCost(cartService.currentUserName());
     }
-
-
+    
 }

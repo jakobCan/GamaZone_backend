@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface SpaceObjectRepository extends JpaRepository<SpaceObject, Long> {
 
-    SpaceObject findSpaceObjectByName(String name);
+    List<SpaceObject> findSpaceObjectByName(String name);
 
     SpaceObject findSpaceObjectById(Long id);
 

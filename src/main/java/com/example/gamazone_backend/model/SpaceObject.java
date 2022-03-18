@@ -2,6 +2,8 @@ package com.example.gamazone_backend.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class SpaceObject {
@@ -18,6 +20,9 @@ public class SpaceObject {
     private String tagline;
     private String category;    //Kategorie (moon, planet, ...)
     private String picture;
+
+    @OneToMany
+    private Set<CartItem> cartItems = new HashSet<CartItem>();
 
     public SpaceObject() {
 

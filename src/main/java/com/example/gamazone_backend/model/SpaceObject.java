@@ -18,7 +18,7 @@ public class SpaceObject {
     private int price;
     private String description;
     private String tagline;
-    private String category;    //Kategorie (moon, planet, ...)
+    private String category;
     private String picture;
 
     @OneToMany

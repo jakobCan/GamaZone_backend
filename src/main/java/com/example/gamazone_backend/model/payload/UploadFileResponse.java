@@ -3,13 +3,13 @@ package com.example.gamazone_backend.model.payload;
 public class UploadFileResponse {
 
     private String fileName;
-    private String filePath;
+    private String fileDownloadUri;
     private String fileType;
     private long size;
 
-    public UploadFileResponse(String fileName, String filePath, String fileType, long size) {
+    public UploadFileResponse(String fileName, String fileDownloadUri, String fileType, long size) {
         this.fileName = fileName;
-        this.filePath = filePath;
+        this.fileDownloadUri = fileDownloadUri;
         this.fileType = fileType;
         this.size = size;
     }
@@ -38,11 +38,11 @@ public class UploadFileResponse {
         this.size = size;
     }
 
-    public String getFilePath() {
-        return filePath;
+    public String getFileDownloadUri() {
+        return fileDownloadUri;
     }
 
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
+    public void setFileDownloadUri(String fileDownloadUri) {
+        this.fileDownloadUri = fileDownloadUri;
     }
 }

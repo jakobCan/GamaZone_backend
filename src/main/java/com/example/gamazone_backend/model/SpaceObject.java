@@ -22,7 +22,7 @@ public class SpaceObject {
     private String picture;
 
     @OneToMany
-    private Set<CartItem> cartItems = new HashSet<CartItem>();
+    private final Set<CartItem> cartItems = new HashSet<CartItem>();
 
     public SpaceObject() {
 

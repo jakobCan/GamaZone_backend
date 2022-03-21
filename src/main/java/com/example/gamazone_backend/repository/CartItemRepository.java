@@ -8,6 +8,4 @@ import java.util.List;
 
 public interface CartItemRepository extends CrudRepository<CartItem, Long> {
     List<CartItem> findBySpaceObject(SpaceObject spaceObject);
-
-    //CartItem findByCartItemById(Long CartItem);
 }

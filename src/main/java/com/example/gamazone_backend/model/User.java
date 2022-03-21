@@ -1,9 +1,5 @@
 package com.example.gamazone_backend.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;

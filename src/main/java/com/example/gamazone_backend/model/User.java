@@ -34,8 +34,11 @@ public class User {
     @OneToOne (cascade = CascadeType.ALL)
     Cart cart = new Cart();
 
-    public User() {
+    public User(int i) {
 
+    }
+
+    public User() {
     }
 
     public User(Long userId, String username, String password, String role, String firstName, String lastName, String email, boolean active) {
@@ -49,12 +52,12 @@ public class User {
         this.active = active;
     }
 
-    public User(String firstName, String lastName, String email, String username, String password) { // TODO: 10.09.2021 Builder machen?
+    public User(String username, String password, String firstName, String lastName, String email) {
+        this.username = username;
+        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.username = username;
-        this.password = password;
     }
 
     public User(String username, String password, String role, String firstName, String lastName, String email) {

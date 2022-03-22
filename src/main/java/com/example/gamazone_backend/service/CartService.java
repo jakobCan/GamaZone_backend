@@ -1,9 +1,12 @@
 package com.example.gamazone_backend.service;
 
+import com.example.gamazone_backend.model.Cart;
 import com.example.gamazone_backend.model.CartItem;
 import com.example.gamazone_backend.model.SpaceObject;
+import com.example.gamazone_backend.model.User;
 import com.example.gamazone_backend.repository.CartItemRepository;
 import com.example.gamazone_backend.repository.SpaceObjectRepository;
+import com.example.gamazone_backend.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +27,9 @@ public class CartService{
     @Autowired
     private CartItemRepository cartItemRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     public List<CartItem> getItems(String username) {
         List<CartItem> result = new ArrayList<CartItem>();
         for (CartItem item : cartItemRepository.findAll()) {
@@ -33,6 +39,8 @@ public class CartService{
     }
 
     public CartItem addSpaceObject(String spaceObjectName, int quantity, String username){
+        final String currentUsername = currentUserName();
+        Cart cart = userRepository.findByUsername(currentUsername).getCart();
         log.debug("Adding spaceObject to cart: {}", spaceObjectName);
         // Sanity check for quantity and spaceObject existence.
         assert quantity > 0;
@@ -48,6 +56,7 @@ public class CartService{
             // yes, increment count
             cartItem = foundItems.get(0);
             cartItem.setQuantity(cartItem.getQuantity() + quantity);
+            cartItem.setCart(cart);
         } else {
             // not yet, add a new spaceObject
             cartItem = new CartItem(foundSpaceObjects.get(0), quantity);

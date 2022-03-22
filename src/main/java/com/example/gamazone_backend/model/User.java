@@ -31,7 +31,7 @@ public class User {
 
     private boolean active = true;
 
-    @OneToOne (cascade = CascadeType.ALL)
+    @OneToOne (cascade = CascadeType.REMOVE)
     Cart cart = new Cart();
 
     public User(int i) {
@@ -131,5 +131,13 @@ public class User {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 }

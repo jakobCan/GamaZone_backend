@@ -52,6 +52,14 @@ public class CartItem {
         this.quantity = quantity;
     }
 
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
     @Override
     public String toString() {
         return "CartItem [id=" + id + ", spaceObject=" + spaceObject + ", quantity=" + quantity + "]";

@@ -44,7 +44,11 @@ public class SpaceObjectController {
             spaceObject.setPrice(spaceObjectDetails.getPrice());
             spaceObject.setTagline(spaceObjectDetails.getTagline());
             spaceObject.setCategory(spaceObjectDetails.getCategory());
-            spaceObjectRepository.save(spaceObjectDetails);
+            if (spaceObjectDetails.getPicture() != null){
+                System.out.println("picture is not null");
+                spaceObject.setPicture(spaceObjectDetails.getPicture());
+            }
+            spaceObjectRepository.save(spaceObject);
             return spaceObject;
 
         }
